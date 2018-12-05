@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import dao.ProdutoDAO;
 import java.awt.Choice;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JButton;
@@ -24,9 +25,8 @@ public class UsuarioGUI extends javax.swing.JFrame {
     /**
      * Creates new form Tela1
      */
-    
-    String il[] = {"Amarelo", "Vermelho", "Azul", "Branco", "Preto", "Vermelho", "Rosa", "Verde"};
-    
+    String il[] = {"Branco", "Amarelo", "Vermelho", "Azul", "Preto", "Vermelho", "Rosa", "Verde"};
+    String produtosCadastrados[] = new String[1];
     public UsuarioGUI() {
         initComponents();
     }
@@ -56,33 +56,39 @@ public class UsuarioGUI extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         pnlEmprestar = new javax.swing.JPanel();
+        btnEmprestar = new javax.swing.JButton();
+        cdcProduto = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tbpPainel.setBackground(new java.awt.Color(0, 204, 204));
 
-        pnlVisualizar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlVisualizar.setBackground(new java.awt.Color(29, 188, 186));
 
         javax.swing.GroupLayout pnlVisualizarLayout = new javax.swing.GroupLayout(pnlVisualizar);
         pnlVisualizar.setLayout(pnlVisualizarLayout);
         pnlVisualizarLayout.setHorizontalGroup(
             pnlVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 343, Short.MAX_VALUE)
+            .addGap(0, 519, Short.MAX_VALUE)
         );
         pnlVisualizarLayout.setVerticalGroup(
             pnlVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGap(0, 354, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlVisualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(pnlVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlVisualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(pnlVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tbpPainel.addTab("VISUALIZAR", jPanel4);
@@ -129,28 +135,29 @@ public class UsuarioGUI extends javax.swing.JFrame {
         pnlCadastro.setLayout(pnlCadastroLayout);
         pnlCadastroLayout.setHorizontalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(jLabel2)))
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chcCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
             .addGroup(pnlCadastroLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(btnCadastrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(jLabel2)))
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chcCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(btnCadastrar)))
+                .addGap(26, 230, Short.MAX_VALUE))
         );
         pnlCadastroLayout.setVerticalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,20 +167,22 @@ public class UsuarioGUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(chcCores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(pnlCadastroLayout.createSequentialGroup()
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(chcCores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59)
                 .addComponent(btnCadastrar)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -189,17 +198,38 @@ public class UsuarioGUI extends javax.swing.JFrame {
 
         tbpPainel.addTab("CADASTRO", jPanel2);
 
-        pnlEmprestar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEmprestar.setBackground(new java.awt.Color(29, 188, 186));
+
+        btnEmprestar.setBackground(new java.awt.Color(188, 82, 29));
+        btnEmprestar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEmprestar.setText("Emprestar");
+        btnEmprestar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmprestarActionPerformed(evt);
+            }
+        });
+
+        cdcProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pnlEmprestarLayout = new javax.swing.GroupLayout(pnlEmprestar);
         pnlEmprestar.setLayout(pnlEmprestarLayout);
         pnlEmprestarLayout.setHorizontalGroup(
             pnlEmprestarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 343, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEmprestarLayout.createSequentialGroup()
+                .addContainerGap(224, Short.MAX_VALUE)
+                .addGroup(pnlEmprestarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cdcProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmprestar))
+                .addGap(202, 202, 202))
         );
         pnlEmprestarLayout.setVerticalGroup(
             pnlEmprestarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEmprestarLayout.createSequentialGroup()
+                .addContainerGap(147, Short.MAX_VALUE)
+                .addComponent(cdcProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(btnEmprestar)
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -220,7 +250,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(160, Short.MAX_VALUE)
+                .addContainerGap(323, Short.MAX_VALUE)
                 .addComponent(tbpPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116))
         );
@@ -229,7 +259,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tbpPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,22 +268,28 @@ public class UsuarioGUI extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
         produto P = new produto();
-        
+
         P.setCor(chcCores.getSelectedItem());
         P.setMaterial(txtMaterial.getText());
         P.setNome(txtNome.getText());
         P.setTipo(txtTipo.getText());
-        
-        
-        if(txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtMaterial.getText().isEmpty()){
+      
+        if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtMaterial.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Os campos não podem ficar vazios");
         } else {
+           // ProdutoDAO pDAO = new ProdutoDAO();
+           // pDAO.adiciona(P);
             txtNome.setText("");
-        txtTipo.setText("");
-        txtMaterial.setText("");
-        chcCores.select("Amarelo");
+            txtTipo.setText("");
+            txtMaterial.setText("");
+            chcCores.select("Branco");
+            cdcProduto.addItem(P.getNome());
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmprestarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,7 +325,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
                 new UsuarioGUI().setVisible(true);
             }
         });
-        
+
     }
 
     public Choice getChcCores() {
@@ -324,12 +360,11 @@ public class UsuarioGUI extends javax.swing.JFrame {
         this.txtTipo = txtTipo;
     }
 
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEmprestar;
+    private javax.swing.JComboBox<String> cdcProduto;
     private java.awt.Choice chcCores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
